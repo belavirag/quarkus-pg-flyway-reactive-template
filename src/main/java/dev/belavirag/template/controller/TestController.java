@@ -21,7 +21,7 @@ public class TestController {
     @GET
     @Path("/healthcheck")
     @Produces(MediaType.TEXT_PLAIN)
-    public Uni<String> test() {
+    public Uni<String> healthcheck() {
         return Uni.createFrom().item(Thread.currentThread().getName());
     }
 

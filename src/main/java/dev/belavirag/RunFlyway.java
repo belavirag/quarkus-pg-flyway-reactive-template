@@ -11,6 +11,7 @@ import io.smallrye.config.ConfigMapping;
 import io.smallrye.config.WithDefault;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.flywaydb.core.Flyway;
+import org.hibernate.SessionFactory;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 public class RunFlyway {
 
     RunFlyway(Scheduler scheduler,
+                    SessionFactory sessionFactory,
                     FlywayConfig flywayConfig,
                     @ConfigProperty(name = "quarkus.datasource.reactive.url") String datasourceUrl,
                     @ConfigProperty(name = "quarkus.datasource.username") String datasourceUsername,
@@ -47,6 +49,7 @@ public class RunFlyway {
                     flyway.clean();
                 }
                 flyway.migrate();
+                sessionFactory.getSchemaManager().validateMappedObjects();
                 scheduler.resume();
             }
         }
