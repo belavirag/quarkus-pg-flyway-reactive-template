@@ -4,6 +4,16 @@ This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
+### This template uses
+* Quarkus
+* PostgreSQL
+* Redis
+* Hibernate Reactive
+
+
+### Noteworthy quirks
+* To add a migration, you need to create a file in `resources/db/migration` and add the file name to the application.properties file under `application.database.flyway.files`.
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
